@@ -3,49 +3,89 @@
 <head>
   <style>
     body {
-      width: 300px;
+      width: 400px;
+      padding: 0;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f3f3f3;
+    }
+    
+    /* The main container for the input */
+    .command-bar-container {
+      background: white;
       padding: 10px;
-      font-family: Arial, sans-serif;
-    }
-    .search-container {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
     }
-    input {
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
+
+    /* The visual "Breadcrumb" chip */
+    #breadcrumb {
+      display: none; /* Hidden by default */
+      background-color: #e0e5ee;
+      color: #333;
+      padding: 4px 8px;
       border-radius: 4px;
-      width: 100%;
-      box-sizing: border-box; /* Keeps padding inside width */
-    }
-    button {
-      padding: 8px;
-      background-color: #0070d2;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover {
-      background-color: #005fb2;
-    }
-    #status {
       font-size: 12px;
-      color: red;
-      margin-top: 5px;
-      display: none; /* Hidden unless there is an error */
+      font-weight: 600;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
+    /* The actual text input */
+    #cmdInput {
+      flex-grow: 1;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: #333;
+    }
+    #cmdInput::placeholder { color: #999; }
+
+    /* The Autocomplete Dropdown */
+    #suggestions {
+      background: white;
+      max-height: 250px;
+      overflow-y: auto;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .suggestion-item {
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+    }
+    .suggestion-item:hover, .suggestion-item.selected {
+      background-color: #f4f6f9;
+      color: #0070d2;
+    }
+    .suggestion-meta {
+      color: #999;
+      font-size: 11px;
+    }
+
+    /* Status bar for errors/loading */
+    #status-bar {
+      padding: 5px 10px;
+      font-size: 11px;
+      color: #777;
+      background: #f9f9f9;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="search-container">
-    <input type="text" id="navSearch" placeholder="Type 'Flows', 'Users'..." autofocus>
-    <button id="goButton">Go</button>
+
+  <div class="command-bar-container">
+    <span id="breadcrumb"></span>
+    <input type="text" id="cmdInput" placeholder="Type 'Flows', 'Users', 'Profiles'..." autocomplete="off" autofocus>
   </div>
-  <div id="status"></div>
+
+  <div id="suggestions"></div>
+  <div id="status-bar"></div>
 
   <script src="popup.js"></script>
 </body>
