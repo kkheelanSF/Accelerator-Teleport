@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "SFDC Teleport",
+  "version": "1.0",
+  "description": "Instant navigation to Salesforce Setup features.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
