@@ -1,12 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "SFDC Teleport",
-  "version": "1.0",
-  "description": "Instant navigation to Salesforce Setup features.",
+  "name": "SFDC Teleport V2",
+  "version": "2.1",
+  "description": "Instant navigation to specific Flows, Users, and Profiles.",
   "action": {
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "cookies"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ]
 }
